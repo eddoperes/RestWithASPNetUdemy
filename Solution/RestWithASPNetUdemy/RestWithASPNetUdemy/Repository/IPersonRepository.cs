@@ -1,8 +1,8 @@
 ﻿using RestWithASPNetUdemy.Model;
 
-namespace RestWithASPNetUdemy.Services
+namespace RestWithASPNetUdemy.Repository
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
 
         Person Create(Person person);
@@ -14,6 +14,8 @@ namespace RestWithASPNetUdemy.Services
         Person Update(Person person);
 
         void Delete(int id);
+
+        bool Exists(int id);
 
     }
 

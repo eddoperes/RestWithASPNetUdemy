@@ -1,14 +1,14 @@
 ﻿using RestWithASPNetUdemy.Model;
 using RestWithASPNetUdemy.Model.Context;
 
-namespace RestWithASPNetUdemy.Services.Implementations
+namespace RestWithASPNetUdemy.Repository.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonRepositoryImplementation : IPersonRepository
     {
 
         private SQLServerContext _context;
 
-        public PersonServiceImplementation(SQLServerContext sqlServerContext) 
+        public PersonRepositoryImplementation(SQLServerContext sqlServerContext) 
         {
             _context = sqlServerContext;
         }
@@ -60,7 +60,7 @@ namespace RestWithASPNetUdemy.Services.Implementations
         {
 
             if (!Exists(person.Id))
-                return new Person();
+                return null;
 
             var person_previous = _context.Persons.SingleOrDefault(p => p.Id.Equals(person.Id));
 
@@ -79,10 +79,11 @@ namespace RestWithASPNetUdemy.Services.Implementations
             return person;
         }
 
-        private bool Exists(int id)
+        public bool Exists(int id)
         {
             return _context.Persons.Any(p => p.Id.Equals(id));  
         }
+
 
     }
 
