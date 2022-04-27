@@ -4,6 +4,9 @@ using RestWithASPNetUdemy.Business.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using RestWithASPNetUdemy.Repository.Generic;
+using System.Net.Http.Headers;
+using RestWithASPNetUdemy.Hypermedia.Filters;
+using RestWithASPNetUdemy.Hypermedia.Enricher;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,19 @@ if (builder.Environment.IsDevelopment())
 {
     MigrateDatabase(connection);
 }
+
+builder.Services.AddMvc(options =>
+{ 
+    options.RespectBrowserAcceptHeader = true;
+    options.FormatterMappings.SetMediaTypeMappingForFormat("xml", Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/xml"));
+    options.FormatterMappings.SetMediaTypeMappingForFormat("json", Microsoft.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json"));
+}).AddXmlSerializerFormatters();
+
+var filterOptions = new HypermediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+
+builder.Services.AddSingleton(filterOptions);
 
 builder.Services.AddApiVersioning();
 
@@ -40,6 +56,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute("DefaultApi","{controller=value}/{id?}");
 
 app.Run();
 

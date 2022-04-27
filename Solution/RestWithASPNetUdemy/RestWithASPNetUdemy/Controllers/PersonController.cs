@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RestWithASPNetUdemy.Business;
 using RestWithASPNetUdemy.Data.VO;
+using RestWithASPNetUdemy.Hypermedia.Filters;
 
 namespace RestWithASPNetUdemy.Controllers
 {
@@ -20,12 +21,14 @@ namespace RestWithASPNetUdemy.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HypermediaFilter))]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HypermediaFilter))]
         public IActionResult Get(int id)
         {
             var person = _personBusiness.FindById(id);
@@ -35,6 +38,7 @@ namespace RestWithASPNetUdemy.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HypermediaFilter))]
         public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null)
@@ -43,6 +47,7 @@ namespace RestWithASPNetUdemy.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HypermediaFilter))]
         public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null)
