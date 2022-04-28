@@ -7,10 +7,16 @@ using RestWithASPNetUdemy.Repository.Generic;
 using System.Net.Http.Headers;
 using RestWithASPNetUdemy.Hypermedia.Filters;
 using RestWithASPNetUdemy.Hypermedia.Enricher;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder => {
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
 
 // Add services to the container.
 
@@ -39,6 +45,20 @@ builder.Services.AddSingleton(filterOptions);
 
 builder.Services.AddApiVersioning();
 
+builder.Services.AddSwaggerGen(c => {
+    c.SwaggerDoc("v1",
+    new OpenApiInfo
+    {
+        Title = "Rest With ASP Net Udemy",
+        Description = "API Restfull",
+        Contact = new OpenApiContact
+        {
+            Name = "Eduardo Peres",
+            Url = new Uri("https://github.com/eddoperes/RestWithASPNetUdemy")
+        }
+    });
+});
+
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 //builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
@@ -52,6 +72,18 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+app.UseCors(); 
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rest With ASP Net Udemy - v1");
+});
+
+var option = new RewriteOptions();
+option.AddRedirect("^$", "swagger");
+app.UseRewriter(option); 
 
 app.UseAuthorization();
 
