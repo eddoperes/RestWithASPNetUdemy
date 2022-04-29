@@ -22,6 +22,21 @@ namespace RestWithASPNetUdemy.Repository
             return _context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.Passwoed == pass);
         }
 
+        public User ValidateCredentials(string userName)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserName == userName);
+        }
+
+        public bool RevokeToken(string userName)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.UserName == userName);
+            if (user == null)
+                return false;
+            user.RefreshToken = null;
+            _context.SaveChanges();
+            return true;
+        }
+
         public User RefreshUserInfo(User user)
         {
 

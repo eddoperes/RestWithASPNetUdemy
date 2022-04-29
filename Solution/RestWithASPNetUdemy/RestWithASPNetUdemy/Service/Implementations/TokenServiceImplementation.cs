@@ -7,12 +7,12 @@ using System.Text;
 
 namespace RestWithASPNetUdemy.Service.Implementations
 {
-    public class TokenService : ITokenService
+    public class TokenServiceImplementation : ITokenService
     {
 
         private TokenConfiguration _tokenConfiguration;
 
-        public TokenService(TokenConfiguration tokenConfiguration) {
+        public TokenServiceImplementation(TokenConfiguration tokenConfiguration) {
             _tokenConfiguration = tokenConfiguration;
         }
 
@@ -31,7 +31,7 @@ namespace RestWithASPNetUdemy.Service.Implementations
             return tokenString;
         }
 
-        public string GenerateRefreshToken(IEnumerable<Claim> claims)
+        public string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
             using (var rng = RandomNumberGenerator.Create()) {
