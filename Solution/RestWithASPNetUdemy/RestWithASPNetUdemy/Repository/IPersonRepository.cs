@@ -1,21 +1,14 @@
 ﻿using RestWithASPNetUdemy.Model;
+using RestWithASPNetUdemy.Repository.Generic;
 
 namespace RestWithASPNetUdemy.Repository
 {
-    public interface IPersonRepository
+    public interface IPersonRepository: IRepository<Person>
     {
 
-        Person Create(Person person);
+        Person Disable(int id);
 
-        Person FindById(int id);
-
-        List<Person> FindAll();
-
-        Person Update(Person person);
-
-        void Delete(int id);
-
-        bool Exists(int id);
+        List<Person> FindByName(string firstName, string lastName);
 
     }
 

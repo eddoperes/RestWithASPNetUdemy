@@ -6,7 +6,7 @@ namespace RestWithASPNetUdemy.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private SQLServerContext _context;
+        protected SQLServerContext _context;
         private DbSet<T> _dataSet;
 
         public GenericRepository(SQLServerContext sqlServerContext)
@@ -89,6 +89,26 @@ namespace RestWithASPNetUdemy.Repository.Generic
         public bool Exists(int id)
         {
             return _dataSet.Any(i => i.Id.Equals(id));
+        }
+
+        public List<T> FindWithPagedSearch(string query)
+        {
+            return _dataSet.FromSqlRaw<T>(query).ToList();  
+        }
+
+        public int GetCount(string query)
+        {
+            string count = "";
+            using (var connection = _context.Database.GetDbConnection()) 
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand()) 
+                {
+                    command.CommandText = query;
+                    count  = command.ExecuteScalar().ToString();
+                }                            
+            }
+            return int.Parse(count);
         }
 
     }

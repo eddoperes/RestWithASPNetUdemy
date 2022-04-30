@@ -19,6 +19,8 @@ namespace RestWithASPNetUdemy.Data.VO
 
         public string Gender { get; set; }
 
+        public bool Enabled { get; set; }
+
         public List<HypermediaLink> Links { get; set; } = new List<HypermediaLink>();
 
     }

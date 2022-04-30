@@ -107,6 +107,7 @@ builder.Services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
 builder.Services.AddTransient<ITokenService, TokenServiceImplementation>();
 
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+builder.Services.AddScoped(typeof(IPersonRepository), typeof(PersonRepository));
 
 builder.Services.AddScoped( typeof(IRepository<>),typeof( GenericRepository<>));
 

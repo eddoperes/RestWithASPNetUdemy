@@ -17,6 +17,10 @@ namespace RestWithASPNetUdemy.Repository.Generic
 
         bool Exists(int id);
 
+        List<T> FindWithPagedSearch(string query);
+
+        int GetCount(string query);
+
     }
 
 }

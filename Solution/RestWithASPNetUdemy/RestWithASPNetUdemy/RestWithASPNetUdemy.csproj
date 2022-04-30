@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Compile Remove="Repository\IBookRepository.cs" />
-    <Compile Remove="Repository\IPersonRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
