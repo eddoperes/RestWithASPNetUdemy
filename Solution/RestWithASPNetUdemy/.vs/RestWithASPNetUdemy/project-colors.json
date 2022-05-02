@@ -10,7 +10,12 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Arquivos Diversos",
       "ColorIndex": -1
+    },
+    "33934fda-1e4c-418b-86a9-7b66156dc4aa": {
+      "ProjectGuid": "33934fda-1e4c-418b-86a9-7b66156dc4aa",
+      "DisplayName": "docker-compose",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

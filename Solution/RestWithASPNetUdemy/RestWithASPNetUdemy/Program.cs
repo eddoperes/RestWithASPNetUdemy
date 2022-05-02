@@ -97,6 +97,8 @@ builder.Services.AddSwaggerGen(c => {
    
 });
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 //builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
@@ -104,6 +106,9 @@ builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 //builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 
 builder.Services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+
+builder.Services.AddScoped<IFileBusiness, FileBusinessImplementation>();
+
 builder.Services.AddTransient<ITokenService, TokenServiceImplementation>();
 
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
