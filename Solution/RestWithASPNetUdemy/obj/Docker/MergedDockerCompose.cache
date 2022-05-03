@@ -1,0 +1,10 @@
+services:
+  rest-with-asp-net-udemy:
+    build:
+      context: C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy
+      dockerfile: RestWithASPNetUdemy/Dockerfile
+    image: rest-with-asp-net-udemy
+    ports:
+    - published: 44300
+      target: 80
+version: '3.4'

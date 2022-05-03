@@ -69,3 +69,4 @@ C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy\RestWithASPNet
 C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy\RestWithASPNetUdemy\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy\RestWithASPNetUdemy\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy\RestWithASPNetUdemy\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Projetos\2022\RestWithASPNetUdemy\Solution\RestWithASPNetUdemy\RestWithASPNetUdemy\obj\Debug\net6.0\RestWithASPNetUdemy.csproj.AssemblyReference.cache
