@@ -1,4 +1,5 @@
 ﻿using RestWithASPNetUdemy.Data.VO;
+using RestWithASPNetUdemy.Hypermedia.Utils;
 using RestWithASPNetUdemy.Model;
 
 namespace RestWithASPNetUdemy.Business
@@ -11,6 +12,8 @@ namespace RestWithASPNetUdemy.Business
         BookVO FindById(int id);
 
         List<BookVO> FindAll();
+
+        PagedSearchVO<BookVO> FindWithPagedSearch(string title, string sortDirection, int pageSize, int page);
 
         BookVO Update(BookVO book);
 
