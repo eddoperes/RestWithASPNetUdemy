@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header';
+import AppRoutes from './routes';
+
+import './global.css';
 
 export default function App() {
   return (
-    <Header>
-      Client REST Udemy
-    </Header>
+    <AppRoutes>
+    </AppRoutes>
   );
 }
 
