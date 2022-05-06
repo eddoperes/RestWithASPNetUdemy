@@ -28,10 +28,10 @@ namespace RestWithASPNetUdemy.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [TypeFilter(typeof(HypermediaFilter))]
-        public IActionResult Get([FromQuery] string title,
-                                 string sortDirection,
+        public IActionResult Get(string sortDirection,
                                  int pageSize,
-                                 int page)
+                                 int page,
+                                 [FromQuery] string? title)
         {
             return Ok(_bookBusiness.FindWithPagedSearch(title, sortDirection, pageSize, page));
         }

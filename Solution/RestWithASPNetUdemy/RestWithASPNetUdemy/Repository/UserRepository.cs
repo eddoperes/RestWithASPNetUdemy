@@ -32,7 +32,7 @@ namespace RestWithASPNetUdemy.Repository
             var user = _context.Users.FirstOrDefault(u => u.UserName == userName);
             if (user == null)
                 return false;
-            user.RefreshToken = null;
+            user.RefreshToken = "";
             _context.SaveChanges();
             return true;
         }
